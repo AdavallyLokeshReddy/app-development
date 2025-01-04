@@ -1,0 +1,27 @@
+#Create a List, tuple and Dictionary with 5 elements in it and how to access few elements based on the index. Try  with different examples 
+my_list = [10, 20, 30, 40, 50]
+first_element = my_list[0]
+third_element = my_list[2]
+last_element = my_list[-1]
+
+print(first_element)
+print(third_element)
+print(last_element)
+
+my_tuple = ('apple', 'banana', 'cherry', 'date', 'elderberry')
+second_element = my_tuple[1]
+fourth_element = my_tuple[3]
+last_element_tuple = my_tuple[-1]
+
+print(second_element)
+print(fourth_element)
+print(last_element_tuple)
+
+my_dict = {'name': 'Alice', 'age': 25, 'city': 'New York', 'job': 'Engineer', 'hobby': 'Reading'}
+name = my_dict['name']
+city = my_dict['city']
+hobby = my_dict['hobby']
+
+print(name)
+print(city)
+print(hobby)
