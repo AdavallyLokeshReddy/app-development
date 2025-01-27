@@ -1,0 +1,28 @@
+import pandas as pd
+
+df = pd.read_csv('banking_data.csv')
+
+filtered_transaction_amount = df[df['Transaction_Amount'] > 2000]
+
+loan_payment_high_balance = df[(df['Transaction_Type'] == 'Loan Payment') & (df['Account_Balance'] > 5000)]
+
+uptown_branch_transactions = df[df['Branch'] == 'Uptown']
+
+print(filtered_transaction_amount)
+print(loan_payment_high_balance)
+print(uptown_branch_transactions)
+
+
+
+import pandas as pd
+
+df = pd.read_csv('banking_data.csv')
+
+df['Transaction_Fee'] = df['Transaction_Amount'] * 0.02
+
+df['Balance_Status'] = df['Account_Balance'].apply(lambda x: 'High Balance' if x > 5000 else 'Low Balance')
+
+print(df[['Transaction_Fee', 'Balance_Status']])
+
+
+
