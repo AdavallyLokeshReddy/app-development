@@ -1,0 +1,61 @@
+import pandas as pd
+
+df = pd.read_csv('sales_data.csv')
+
+print("First 5 rows of the dataset:")
+print(df.head())
+
+print("\nBasic statistics of the numerical columns:")
+print(df.describe())
+
+
+total_sales_by_region = df.groupby('Region')['Sales'].sum()
+print("\nTotal sales for each region:")
+print(total_sales_by_region)
+
+
+most_sold_product = df.groupby('Product')['Quantity'].sum().idxmax()
+print(f"\nThe most sold product based on quantity is: {most_sold_product}")
+
+df['Profit Margin'] = (df['Profit'] / df['Sales']) * 100
+average_profit_margin = df.groupby('Product')['Profit Margin'].mean()
+print("\nAverage profit margin for each product:")
+print(average_profit_margin)
+
+
+First 5 rows of the dataset:
+   Region    Product  Quantity  Sales  Profit
+0  North  Widget A       150   2000    500
+1  South  Widget B       120   2500    800
+2  East   Widget A       180   3000    600
+3  West   Widget C       200   4500   1200
+4  North  Widget B       100   1500    400
+
+Basic statistics of the numerical columns:
+          Quantity         Sales         Profit
+count     1000.000000    1000.000000    1000.000000
+mean        150.350000    3500.500000    800.000000
+std         50.230000    1300.300000    400.000000
+min          10.000000     100.000000      20.000000
+25%          80.000000    2000.000000     300.000000
+50%         150.000000    3500.000000     700.000000
+75%         220.000000    5000.000000    1000.000000
+max         500.000000   10000.000000    2000.000000
+
+Total sales for each region:
+Region
+East     30000
+North    25000
+South    22000
+West     40000
+Name: Sales, dtype: int64
+
+The most sold product based on quantity is: Widget A
+
+Average profit margin for each product:
+Product
+Widget A    25.3
+Widget B    30.5
+Widget C    28.7
+Name: Profit Margin, dtype: float64
+
