@@ -1,0 +1,15 @@
+import pandas as pd
+
+df = pd.read_csv('sales_data.csv')
+
+# Data Filtering
+sales_greater_than_1000 = df[df['Sales'] > 1000]
+sales_east_region = df[df['Region'] == 'East']
+
+# Data Processing
+df['Profit_Per_Unit'] = df['Profit'] / df['Quantity']
+df['High_Sales'] = df['Sales'].apply(lambda x: 'Yes' if x > 1000 else 'No')
+
+print(sales_greater_than_1000)
+print(sales_east_region)
+print(df[['Profit_Per_Unit', 'High_Sales']])
