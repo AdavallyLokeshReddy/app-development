@@ -1,0 +1,31 @@
+# Ask the user to enter a positive integer
+n = int(input("Enter a positive integer: "))
+
+# Use a for loop to print all numbers from 1 to n on separate lines
+print("Using for loop:")
+for i in range(1, n + 1):
+    print(i)
+
+# Use a while loop to calculate the sum of all numbers from 1 to n
+sum = 0
+i = 1
+while i <= n:
+    sum += i
+    i += 1
+
+# Print the result
+print(f"Sum of all numbers from 1 to {n} is: {sum}")
+
+
+
+
+# Define the function calculate_square
+def calculate_square(n):
+    return n ** 2
+
+# Main program
+n = int(input("Enter a positive integer: "))
+
+# Call the calculate_square function and display the result
+result = calculate_square(n)
+print(f"The square of {n} is: {result}")
