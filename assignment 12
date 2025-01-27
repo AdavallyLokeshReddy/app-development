@@ -1,0 +1,15 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('banking_data.csv')
+
+account_type_sum = df.groupby('Account_Type')['Transaction_Amount'].sum()
+account_type_sum.plot(kind='bar', title='Total Transaction Amount per Account Type')
+plt.xlabel('Account Type')
+plt.ylabel('Total Transaction Amount')
+plt.show()
+
+branch_transactions = df['Branch'].value_counts()
+branch_transactions.plot(kind='pie', autopct='%1.1f%%', title='Percentage of Transactions per Branch', legend=False)
+plt.ylabel('')
+plt.show()
