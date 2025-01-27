@@ -1,0 +1,29 @@
+import pandas as pd
+
+df = pd.read_csv('banking_data.csv')
+
+print(df.head())
+
+print(df.describe())
+
+print(df.isnull().sum())
+
+
+import pandas as pd
+
+df = pd.read_csv('banking_data.csv')
+
+account_type_group = df.groupby('Account_Type').agg(
+    Total_Transaction_Amount=('Transaction_Amount', 'sum'),
+    Average_Account_Balance=('Account_Balance', 'mean')
+)
+
+branch_group = df.groupby('Branch').agg(
+    Total_Transactions=('Transaction_Amount', 'count'),
+    Average_Transaction_Amount=('Transaction_Amount', 'mean')
+)
+
+print(account_type_group)
+print(branch_group)
+
+
