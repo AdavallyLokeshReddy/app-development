@@ -1,0 +1,10 @@
+import pandas as pd
+
+df = pd.read_csv('banking_data.csv')
+
+sorted_by_balance = df.sort_values(by='Account_Balance', ascending=False).head(10)
+
+df['Transaction_Rank'] = df.groupby('Branch')['Transaction_Amount'].rank(ascending=False)
+
+print(sorted_by_balance)
+print(df[['Branch', 'Transaction_Amount', 'Transaction_Rank']])
