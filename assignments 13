@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('sales_data.csv')
+
+df = df.drop_duplicates()
+df = df.dropna()
+
+# Total sales per region
+region_sales = df.groupby('Region')['Sales'].sum()
+region_sales.plot(kind='bar', title='Total Sales per Region')
+plt.xlabel('Region')
+plt.ylabel('Total Sales')
+plt.show()
+
+# Relationship between Marketing_Spend and Sales
+plt.scatter(df['Marketing_Spend'], df['Sales'])
+plt.title('Marketing Spend vs Sales')
+plt.xlabel('Marketing Spend')
+plt.ylabel('Sales')
+plt.show()
+
+# Boxplot comparing drug effectiveness across different age groups
+sns.boxplot(x='Age_Group', y='Effectiveness', data=df)
+plt.title('Drug Effectiveness by Age Group')
+plt.xlabel('Age Group')
+plt.ylabel('Effectiveness')
+plt.show()
+
+# Sales trend for each product over different trial periods
+sales_trend = df.groupby(['Product', 'Trial_Period'])['Sales'].sum().unstack()
+sales_trend.plot(kind='line', title='Sales Trend for Each Product')
+plt.xlabel('Trial Period')
+plt.ylabel('Sales')
+plt.show()
+
+# Heatmap of correlation between Sales, Marketing_Spend, and Effectiveness
+correlation_matrix = df[['Sales', 'Marketing_Spend', 'Effectiveness']].corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Heatmap')
+plt.show()
