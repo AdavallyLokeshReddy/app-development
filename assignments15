@@ -1,0 +1,35 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('drug_data.csv')
+
+df = df.drop_duplicates()
+df = df.dropna()
+
+region_effectiveness = df.groupby('Product')['Effectiveness'].mean()
+region_effectiveness.plot(kind='bar', title='Average Effectiveness by Product')
+plt.xlabel('Product')
+plt.ylabel('Average Effectiveness')
+plt.show()
+
+sns.violinplot(x='Product', y='Effectiveness', data=df, inner="quart")
+sns.violinplot(x='Product', y='Side_Effects', data=df, inner="quart")
+plt.title('Distribution of Effectiveness and Side Effects by Product')
+plt.show()
+
+sns.pairplot(df[['Effectiveness', 'Side_Effects', 'Marketing_Spend']])
+plt.title('Pairplot of Effectiveness, Side Effects, and Marketing Spend')
+plt.show()
+
+sns.boxplot(x='Trial_Period', y='Effectiveness', data=df)
+plt.title('Effectiveness by Trial Period')
+plt.xlabel('Trial Period')
+plt.ylabel('Effectiveness')
+plt.show()
+
+sns.regplot(x='Marketing_Spend', y='Effectiveness', data=df)
+plt.title('Regression: Marketing Spend vs Effectiveness')
+plt.xlabel('Marketing Spend')
+plt.ylabel('Effectiveness')
+plt.show()
